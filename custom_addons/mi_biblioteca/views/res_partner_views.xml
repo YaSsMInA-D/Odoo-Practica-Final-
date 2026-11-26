@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_partner_form_inherit_biblioteca" model="ir.ui.view">
+    <field name="name">res.partner.form.inherit.biblioteca</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Biblioteca" name="biblioteca">
+          <group>
+            <field name="es_socio"/>
+          </group>
+          <field name="prestamo_ids" readonly="1"/>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="action_partner_socio" model="ir.actions.act_window">
+    <field name="name">Socios</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('es_socio', '=', True)]</field>
+    <field name="context">{'default_es_socio': True}</field>
+  </record>
+
+  <menuitem id="menu_socios" name="Socios" parent="menu_biblioteca" action="action_partner_socio" sequence="30"/>
+</odoo>
